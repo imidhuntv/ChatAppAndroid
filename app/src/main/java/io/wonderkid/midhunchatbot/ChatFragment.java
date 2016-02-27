@@ -3,9 +3,19 @@ package io.wonderkid.midhunchatbot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import butterknife.Bind;
+import io.wonderkid.model.MessageWrapper;
+import io.wonderkid.network.BotService;
+import io.wonderkid.network.MyRetrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -14,6 +24,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ChatFragment extends Fragment {
+
+    @Bind(R.id.chatList)
+    RecyclerView chatList;
+
+    BotService botService;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -42,7 +57,29 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View v =  inflater.inflate(R.layout.fragment_chat, container, false);
+
+        botService = MyRetrofit.getInstance();
+
+        Call<MessageWrapper> call = botService.sendReceiveMessage("6nt5d1nJHkqbkphe",
+                "Hi",
+                "63906",
+                "chirag1"
+        );
+
+        call.enqueue(new Callback<MessageWrapper>() {
+            @Override
+            public void onResponse(Call<MessageWrapper> call, Response<MessageWrapper> response) {
+                Log.i("success",response.body().getMessage().getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<MessageWrapper> call, Throwable t) {
+                Log.i("success",t.getMessage());
+            }
+        });
+
+        return v;
     }
 
 }

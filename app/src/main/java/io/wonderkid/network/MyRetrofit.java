@@ -12,15 +12,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyRetrofit {
 
-//    static String API_URL = "http://128.199.244.1";
-    static String API_URL = "http://4dceb8a2.ngrok.io";
-    static RippleService rippleService;
+    static String API_URL = "http://www.personalityforge.com/";
+    static BotService botService;
 
     public MyRetrofit() {
     }
 
-    public static RippleService getInstance() {
-        if(rippleService == null)
+    public static BotService getInstance() {
+        if(botService == null)
         {
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
@@ -30,12 +29,12 @@ public class MyRetrofit {
                     .baseUrl(API_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
-            rippleService = retrofit.create(RippleService.class);
+            botService = retrofit.create(BotService.class);
 
-            return rippleService;
+            return botService;
         }
         else
-            return rippleService;
+            return botService;
     }
 
 }

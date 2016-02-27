@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.widget.Toolbar;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
