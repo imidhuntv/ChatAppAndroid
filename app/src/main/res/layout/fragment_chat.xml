@@ -2,9 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.wonderkid.midhunchatbot.ChatFragment"
-    android:padding="@dimen/activity_horizontal_margin"
-    >
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context="io.wonderkid.midhunchatbot.ChatFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chatList"
@@ -14,57 +13,44 @@
         android:divider="@null"
         android:stackFromBottom="true" />
 
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/editor"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#64ffffff">-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sendMessageContainerParent"
+        card_view:cardElevation="8dp"
+        >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/inputMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/sendMessage"
+                    android:background="@null"
+                    android:hint="Type your message"
+                    android:minHeight="48dp"
+                    android:textColor="#555555"
+                    android:textSize="14sp"
+                    android:layout_alignParentBottom="true"
+                    />
 
-            <!--<EditText-->
-                <!--android:id="@+id/replyContent"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginLeft="8dp"-->
-                <!--android:layout_marginRight="56dp"-->
-                <!--android:layout_marginTop="8dp"-->
-                <!--android:background="#ffffff"-->
-                <!--android:hint="Write Message"-->
-                <!--android:inputType="textWebEditText"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:paddingRight="40dp"-->
-                <!--android:textSize="16sp" />-->
-
-            <!--<android.support.design.widget.FloatingActionButton-->
-                <!--android:id="@+id/sendChat"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginLeft="8dp"-->
-                <!--android:layout_marginRight="8dp"-->
-                <!--android:layout_marginTop="8dp"-->
-                <!--android:clickable="true"-->
-                <!--android:padding="16dp"-->
-                <!--android:scaleType="fitXY"-->
-                <!--app:borderWidth="0dp"-->
-                <!--app:elevation="6dp"-->
-                <!--app:fabSize="mini"-->
-                <!--app:pressedTranslationZ="12dp"-->
-                <!--app:rippleColor="#1e000000" />-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/uploadImage"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_toLeftOf="@id/sendChat"-->
-                <!--android:background="@null"-->
-                <!--android:onClick="uploadImageClick"-->
-                <!--android:padding="10dp"-->
-                <!--/>-->
+                <ImageButton
+                    android:id="@+id/sendMessage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_send_black_24dp"
+                    android:alpha=".4"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="8dp"
+                    />
+            </RelativeLayout>
 
 
-        <!--</RelativeLayout>-->
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

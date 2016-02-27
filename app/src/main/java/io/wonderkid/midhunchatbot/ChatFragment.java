@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.wonderkid.model.MessageWrapper;
 import io.wonderkid.network.BotService;
 import io.wonderkid.network.MyRetrofit;
@@ -27,6 +30,10 @@ public class ChatFragment extends Fragment {
 
     @Bind(R.id.chatList)
     RecyclerView chatList;
+    @Bind(R.id.inputMessage)
+    EditText inputMessage;
+    @Bind(R.id.sendMessage)
+    ImageButton sendMessage;
 
     BotService botService;
 
@@ -58,6 +65,8 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_chat, container, false);
+
+        ButterKnife.bind(this,v);
 
         botService = MyRetrofit.getInstance();
 
