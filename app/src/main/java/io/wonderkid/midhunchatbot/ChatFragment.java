@@ -3,6 +3,8 @@ package io.wonderkid.midhunchatbot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +13,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.wonderkid.adapter.ChatViewAdapter;
+import io.wonderkid.model.Message;
 import io.wonderkid.model.MessageWrapper;
 import io.wonderkid.network.BotService;
 import io.wonderkid.network.MyRetrofit;
@@ -20,13 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment{
 
     @Bind(R.id.chatList)
     RecyclerView chatList;
@@ -36,28 +37,10 @@ public class ChatFragment extends Fragment {
     ImageButton sendMessage;
 
     BotService botService;
+    ChatViewAdapter mAdapter;
 
     public ChatFragment() {
         // Required empty public constructor
-    }
-
-
-    public static ChatFragment newInstance() {
-        ChatFragment fragment = new ChatFragment();
-        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -66,12 +49,41 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_chat, container, false);
 
-        ButterKnife.bind(this,v);
+        ButterKnife.bind(this, v);
+        init();
 
+        return v;
+    }
+
+    private void init(){
         botService = MyRetrofit.getInstance();
+        mAdapter = new ChatViewAdapter(getActivity(),new ArrayList<MessageWrapper>());
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        chatList.setLayoutManager(llm);
+        chatList.setItemAnimator(new DefaultItemAnimator());
+        chatList.setAdapter(mAdapter);
+    }
+
+    @OnClick(R.id.sendMessage)
+    public void sendOrReceiveMessage(ImageButton button){
+
+        String messageString = inputMessage.getText().toString();
+
+        Message message = new Message();
+        message.setChatBotID(1234);
+        message.setChatBotName("Midhun");
+        message.setEmotion("");
+
+        MessageWrapper messageWrapper = new MessageWrapper();
+        messageWrapper.setMessage(message);
+
+        mAdapter.addNewMessage(messageWrapper);
+        mAdapter.notifyDataSetChanged();
 
         Call<MessageWrapper> call = botService.sendReceiveMessage("6nt5d1nJHkqbkphe",
-                "Hi",
+                messageString,
                 "63906",
                 "chirag1"
         );
@@ -80,6 +92,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onResponse(Call<MessageWrapper> call, Response<MessageWrapper> response) {
                 Log.i("success",response.body().getMessage().getMessage());
+                mAdapter.addNewMessage(response.body());
             }
 
             @Override
@@ -87,8 +100,6 @@ public class ChatFragment extends Fragment {
                 Log.i("success",t.getMessage());
             }
         });
-
-        return v;
     }
 
 }
