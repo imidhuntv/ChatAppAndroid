@@ -97,14 +97,12 @@ public class ChatViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public static class ViewHolderChatLeft extends RecyclerView.ViewHolder{
 
-        TextView message, msg_time;
+        TextView message;
 
         public ViewHolderChatLeft(View itemView) {
 
             super(itemView);
 
-            this.msg_time = (TextView) itemView
-                    .findViewById(R.id.msg_time);
             this.message = (TextView) itemView
                     .findViewById(R.id.message_text);
         }
@@ -113,13 +111,11 @@ public class ChatViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public static class ViewHolderChatRight extends RecyclerView.ViewHolder {
 
-        TextView message, msg_time;
+        TextView message;
 
         public ViewHolderChatRight(View itemView) {
             super(itemView);
 
-            this.msg_time = (TextView) itemView
-                    .findViewById(R.id.msg_time);
             this.message = (TextView) itemView
                     .findViewById(R.id.message_text);
 

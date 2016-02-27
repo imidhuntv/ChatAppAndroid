@@ -19,7 +19,7 @@
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/sendMessageContainerParent"
-        card_view:cardElevation="8dp"
+        card_view:cardElevation="2dp"
         >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -33,7 +33,8 @@
                     android:background="@null"
                     android:hint="Type your message"
                     android:minHeight="48dp"
-                    android:textColor="#555555"
+                    android:textColor="#585858"
+                    android:textColorHint="#8b8a8a"
                     android:textSize="14sp"
                     android:layout_alignParentBottom="true"
                     />

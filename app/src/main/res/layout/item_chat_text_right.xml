@@ -18,46 +18,21 @@
         android:layout_marginLeft="70dp"
         app:cardCornerRadius="4dp"
         app:cardBackgroundColor="#d2edff"
-        app:cardElevation="1dp"
+        app:cardElevation="2dp"
         android:padding="8dp"
         >
 
-        <RelativeLayout
-            android:id="@+id/message_layout"
+        <TextView
+            android:id="@+id/message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/avatar"
-            android:background="@null"
+            android:gravity="center_vertical|right"
             android:padding="8dp"
-            >
-
-            <TextView
-                android:id="@+id/message_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/msg_user"
-                android:gravity="center_vertical"
-                android:padding="5dp"
-                android:text="Medium Text"
-                android:minWidth="70dp"
-               />
-
-            <TextView
-                android:id="@+id/msg_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/message_text"
-                android:layout_alignRight="@+id/message_text"
-                android:layout_below="@+id/message_text"
-                android:paddingBottom="3dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="1:30 PM"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="10sp"
-                android:gravity="left"/>
-
-        </RelativeLayout>
+            android:layout_marginRight="4dp"
+            android:text="Text"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+           />
 
     </android.support.v7.widget.CardView>
 

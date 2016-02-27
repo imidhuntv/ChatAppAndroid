@@ -37,7 +37,6 @@
                         android:layout_below="@+id/ivLogo"
                         android:text="@string/status"
                         android:textSize="12sp"
-                        android:fontFamily="sans-serif-light"
                         />
                 </RelativeLayout>
 
