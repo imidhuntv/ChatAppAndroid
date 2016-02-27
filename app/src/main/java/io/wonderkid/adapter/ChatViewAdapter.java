@@ -1,16 +1,11 @@
 package io.wonderkid.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import io.wonderkid.midhunchatbot.R;
@@ -25,12 +20,9 @@ public class ChatViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     final int TYPE_CHAT_LEFT = 0;
     final int TYPE_CHAT_RIGHT = 1;
 
-    private Context mContext;
     private List<MessageWrapper> mMessages;
-    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
 
-    public ChatViewAdapter(Context context, List<MessageWrapper> m) {
-        this.mContext = context;
+    public ChatViewAdapter(List<MessageWrapper> m) {
         this.mMessages = m;
     }
 
@@ -67,30 +59,23 @@ public class ChatViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case TYPE_CHAT_LEFT:
                 ViewHolderChatLeft chatleft = (ViewHolderChatLeft) viewHolder;
                 chatleft.message.setText(message.getMessage().getMessage());
-//                Date resultdate1 = new Date(Long.parseLong(message.getMessageTime()));
-//                left.msg_time.setText(sdf.format(resultdate1));
                 break;
 
             case TYPE_CHAT_RIGHT:
                 ViewHolderChatRight chatright = (ViewHolderChatRight) viewHolder;
                 chatright.message.setText(message.getMessage().getMessage());
-//                Date resultdate2 = new Date(Long.parseLong(message.getMessageTime()));
-//                right.msg_time.setText(sdf.format(resultdate2));
                 break;
 
             default:
 //                ViewHolderRight right = (ViewHolderRight) viewHolder;
 //                right.message.setText(message.getMessage());
-//                Date resultdate2 = new Date(Long.parseLong(message.getTime()));
-//                right.msg_time.setText(sdf.format(resultdate2));
-//                right.msg_user.setText("you");
                 break;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (mMessages.get(position).getMessage().getChatBotID().equals("63906"))
+        if (mMessages.get(position).getIsMine())
              return TYPE_CHAT_RIGHT;
         else
             return TYPE_CHAT_LEFT;
@@ -112,45 +97,31 @@ public class ChatViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public static class ViewHolderChatLeft extends RecyclerView.ViewHolder{
 
-        TextView message, msg_time, msg_user;
-        ImageView avatar;
-        LinearLayout layout;
-        RelativeLayout msg_layout;
+        TextView message, msg_time;
 
         public ViewHolderChatLeft(View itemView) {
 
             super(itemView);
-//            this.avatar = (ImageView) itemView
-//                    .findViewById(R.id.avatar);
 
             this.msg_time = (TextView) itemView
                     .findViewById(R.id.msg_time);
             this.message = (TextView) itemView
                     .findViewById(R.id.message_text);
-//            itemView.setOnLongClickListener(this);
         }
 
     }
 
     public static class ViewHolderChatRight extends RecyclerView.ViewHolder {
 
-        TextView message, msg_time, msg_user;
-        ImageView avatar;
-        RelativeLayout layout;
-        RelativeLayout msg_layout;
+        TextView message, msg_time;
 
         public ViewHolderChatRight(View itemView) {
             super(itemView);
-
-//            this.avatar = (ImageView) itemView
-//                    .findViewById(R.id.avatar);
 
             this.msg_time = (TextView) itemView
                     .findViewById(R.id.msg_time);
             this.message = (TextView) itemView
                     .findViewById(R.id.message_text);
-
-//            itemView.setOnLongClickListener(this);
 
         }
 

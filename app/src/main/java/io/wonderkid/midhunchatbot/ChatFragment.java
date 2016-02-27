@@ -57,10 +57,11 @@ public class ChatFragment extends Fragment{
 
     private void init(){
         botService = MyRetrofit.getInstance();
-        mAdapter = new ChatViewAdapter(getActivity(),new ArrayList<MessageWrapper>());
+        mAdapter = new ChatViewAdapter(new ArrayList<MessageWrapper>());
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
+        llm.setStackFromEnd(true);
         chatList.setLayoutManager(llm);
         chatList.setItemAnimator(new DefaultItemAnimator());
         chatList.setAdapter(mAdapter);
@@ -75,12 +76,15 @@ public class ChatFragment extends Fragment{
         message.setChatBotID(1234);
         message.setChatBotName("Midhun");
         message.setEmotion("");
+        message.setMessage(messageString);
 
         MessageWrapper messageWrapper = new MessageWrapper();
+        messageWrapper.setIsMine(true);
         messageWrapper.setMessage(message);
 
-        mAdapter.addNewMessage(messageWrapper);
-        mAdapter.notifyDataSetChanged();
+        updateChatList(messageWrapper);
+
+        inputMessage.setText("");
 
         Call<MessageWrapper> call = botService.sendReceiveMessage("6nt5d1nJHkqbkphe",
                 messageString,
@@ -92,7 +96,7 @@ public class ChatFragment extends Fragment{
             @Override
             public void onResponse(Call<MessageWrapper> call, Response<MessageWrapper> response) {
                 Log.i("success",response.body().getMessage().getMessage());
-                mAdapter.addNewMessage(response.body());
+                updateChatList(response.body());
             }
 
             @Override
@@ -100,6 +104,20 @@ public class ChatFragment extends Fragment{
                 Log.i("success",t.getMessage());
             }
         });
+    }
+
+    private void updateChatList(MessageWrapper messageWrapper){
+
+        mAdapter.addNewMessage(messageWrapper);
+        mAdapter.notifyDataSetChanged();
+        chatList.post(new Runnable() {
+            @Override
+            public void run() {
+                //call smooth scroll
+                chatList.smoothScrollToPosition(mAdapter.getItemCount());
+            }
+        });
+
     }
 
 }

@@ -5,9 +5,14 @@ package io.wonderkid.model;
  */
 public class MessageWrapper {
 
+    Boolean isMine;
     String success;
     String errorMessage;
     Message message;
+
+    public MessageWrapper() {
+        this.isMine = false;
+    }
 
     public String getSuccess() {
         return success;
@@ -32,4 +37,13 @@ public class MessageWrapper {
     public void setMessage(Message message) {
         this.message = message;
     }
+    public Boolean getIsMine() {
+        return isMine;
+    }
+
+    public void setIsMine(Boolean isMine) {
+        this.isMine = isMine;
+    }
+
+
 }
