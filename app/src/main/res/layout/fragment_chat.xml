@@ -4,10 +4,68 @@
     android:layout_height="match_parent"
     tools:context="io.wonderkid.midhunchatbot.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chatOnList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="@null"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:stackFromBottom="true" />
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/editor"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#64ffffff">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/replyContent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="56dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:background="#ffffff"-->
+                <!--android:hint="Write Message"-->
+                <!--android:inputType="textWebEditText"-->
+                <!--android:paddingLeft="8dp"-->
+                <!--android:paddingRight="40dp"-->
+                <!--android:textSize="16sp" />-->
+
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:id="@+id/sendChat"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:clickable="true"-->
+                <!--android:padding="16dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--app:borderWidth="0dp"-->
+                <!--app:elevation="6dp"-->
+                <!--app:fabSize="mini"-->
+                <!--app:pressedTranslationZ="12dp"-->
+                <!--app:rippleColor="#1e000000" />-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/uploadImage"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@id/sendChat"-->
+                <!--android:background="@null"-->
+                <!--android:onClick="uploadImageClick"-->
+                <!--android:padding="10dp"-->
+                <!--/>-->
+
+
+        <!--</RelativeLayout>-->
 
 </FrameLayout>
