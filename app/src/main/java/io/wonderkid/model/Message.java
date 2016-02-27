@@ -8,7 +8,7 @@ public class Message {
     private String chatBotName;
     private Integer chatBotID;
     private String message;
-    private Object emotion;
+    private String emotion;
 
     public String getChatBotName() {
         return chatBotName;
@@ -34,11 +34,11 @@ public class Message {
         this.message = message;
     }
 
-    public Object getEmotion() {
+    public String getEmotion() {
         return emotion;
     }
 
-    public void setEmotion(Object emotion) {
+    public void setEmotion(String emotion) {
         this.emotion = emotion;
     }
 }
