@@ -13,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,7 @@ import io.wonderkid.model.Message;
 import io.wonderkid.model.MessageWrapper;
 import io.wonderkid.network.BotService;
 import io.wonderkid.network.MyRetrofit;
+import io.wonderkid.utils.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,8 +41,6 @@ public class ChatFragment extends Fragment{
     RecyclerView chatList;
     @Bind(R.id.inputMessage)
     EditText inputMessage;
-    @Bind(R.id.sendMessage)
-    ImageButton sendMessage;
 
     BotService botService;
     ChatViewAdapter mAdapter;
@@ -63,6 +65,7 @@ public class ChatFragment extends Fragment{
     private void init(){
         botService = MyRetrofit.getInstance();
         db = new MySQLiteHelper(getActivity());
+
         loadChatHistory();
     }
 
